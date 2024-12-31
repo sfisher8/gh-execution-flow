@@ -76,11 +76,12 @@ jobs:
       - name: Deploy
         run: echo "Deploying..."
   report:
-      if: failure()
-      runs-on: ubuntu-latest
-      steps:
-        - name: output
-          run: |
-            echo "something wnet wrong"
-            echo "${{ github }}" 
+    needs: [lint,deploy]
+    if: failure()
+    runs-on: ubuntu-latest
+    steps:
+      - name: output
+        run: |
+          echo "something wnet wrong"
+          echo "${{ github }}" 
         
