@@ -78,7 +78,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
         - name: Print Deploy Output
-          run: echo "${{ needs.deploy.outputs }}"
+          run: echo "${{ toJSON(needs.deploy.outputs) }}"
   report:
     needs: [lint,deploy]
     if: failure()
